@@ -1,0 +1,12 @@
+apiVersion: v2
+name: snic
+description: A Helm Chart for the SNIC wepapp
+
+type: application
+
+version: 0.1.0
+
+dependencies:
+    - name: postgresql
+      version: 12.1.5
+      repository: https://charts.bitnami.com/bitnami

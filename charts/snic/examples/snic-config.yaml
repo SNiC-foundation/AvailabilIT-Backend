@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: snic-backend-config
+    namespace: snic
+type: Opaque
+stringData:
+    NODE_ENV: production
+    PORT: "3001"
+    USE_HTTPS: "false"
+    TZ: Europe/Amsterdam
+    SESSION_SECRET: Jt2qrgQIFAn2LkW47UE8S4o2t7VyiHPY
+    SMTP_USERNAME:
+    SMTP_PASSWORD:
+    URL: https://sustainabilit.svia.nl

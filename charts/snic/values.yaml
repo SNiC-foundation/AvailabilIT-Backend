@@ -1,0 +1,180 @@
+replicaCount:
+  backend: 1
+  frontend: 1
+
+image:
+  tag: "release-39"
+  backend:
+    repository: registry.gitlab.com/studieverenigingvia/snic-sustainabilit/webapp/backend
+    pullPolicy: Always
+    # Overrides the image tag whose default is the chart appVersion.
+  frontend:
+    repository: registry.gitlab.com/studieverenigingvia/snic-sustainabilit/webapp/frontend
+    pullPolicy: Always
+    # Overrides the image tag whose default is the chart appVersion.
+
+
+postgresql:
+    primary:
+        persistence:
+            storageClass: "local-path"
+            size: 1Gi
+        podAnnotations:
+            k8up.io/backupcommand: "sh -c 'PGDATABASE=\"$POSTGRES_DB\" PGUSER=\"$POSTGRES_USER\" PGPASSWORD=\"$POSTGRES_PASSWORD\" pg_dump --clean'"
+            k8up.io/file-extension: ".sql"
+    auth:
+        username: snic
+        database: snic
+        # password: ""
+        # postgresPassword: ""
+        # existingSecret has preference over two literals above, if defined
+        # For example:
+        #    apiVersion: v1
+        #    kind: Secret
+        #    metadata:
+        #        name: enter-existing-secret-name-postgresql
+        #    type: Opaque
+        #    stringData:
+        #        password: replace_this_with_password
+        #        postgres-password: replace_this_with_postgresPassword
+        existingSecret: "postgres-credentials"
+
+backend:
+# Should contain: 
+      # - NODE_ENV=production
+      # - PORT=3001
+      # - USE_HTTPS=false
+      # - TZ=Europe/Amsterdam
+      # - SESSION_SECRET=
+      # - SMTP_USERNAME=noreply@snic.nl
+      # - SMTP_PASSWORD=
+      # - URL=https://snic-creativit.nl
+  envSecret: "snic-backend-config"
+
+
+
+nameOverride: ""
+imagePullSecrets:
+    - name: gitlab-registry-secret
+fullnameOverride: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  backend:
+    type: ClusterIP
+    port: 3001
+  frontend:
+    type: ClusterIP
+    port: 80
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: sustainabilit.snic.nl
+      http:
+        paths:
+        # This is the path barcodes are served on
+        # It's weird that it is not just /static, but it's a decision the previous snic team made
+          - path: /api/static
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: snic-frontend
+                port:
+                  name: http
+          - path: /api
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: snic-backend
+                port:
+                  name: http
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: snic-frontend
+                port:
+                  name: http
+    - host: sustainabilit.svia.nl
+      http:
+        paths:
+          - path: /api/static
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: snic-frontend
+                port:
+                  name: http
+          - path: /api
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: snic-backend
+                port:
+                  name: http
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: snic-frontend
+                port:
+                  name: http
+                  
+  tls: 
+   - secretName: snic-tls
+     hosts:
+       - sustainabilit.svia.nl
+   - secretName: snic-prod-tls
+     hosts:
+       - sustainabilit.snic.nl
+
+resources: 
+  frontend:
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  backend:
+    limits:
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 512Mi
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# Additional volumes on the output Deployment definition.
+volumes: []
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
