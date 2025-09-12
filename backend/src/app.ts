@@ -1,4 +1,5 @@
 import express, { Express } from 'express';
+import cors from 'cors'
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import passport from 'passport';
@@ -53,6 +54,7 @@ export function setupSessionSupport(app: Express) {
 function createApp(): void {
   initializeDataSource().then(() => {
     const app = express();
+    app.use(cors());
 
     [uploadDirLoc, uploadPartnerLogoDir, uploadSpeakerImageDir,
       barcodeDirLoc, qrCodeDirLoc].forEach((loc) => {

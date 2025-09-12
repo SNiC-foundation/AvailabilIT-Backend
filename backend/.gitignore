@@ -138,6 +138,7 @@ src/routes.ts
 
 # SQLite
 local.sqlite
+localdev.sqlite
 
 # Testsuite
 reports
