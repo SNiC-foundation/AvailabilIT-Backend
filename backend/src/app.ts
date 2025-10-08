@@ -55,7 +55,7 @@ function createApp(): void {
   initializeDataSource().then(() => {
     const app = express();
     app.use(cors({
-      origin: true,
+      origin: ['http://localhost:5173', 'https://availabilit.ia.utwente.nl'],
       credentials: true,
     }));
 
