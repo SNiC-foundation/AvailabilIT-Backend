@@ -34,12 +34,12 @@ export function setupSessionSupport(app: Express) {
     secret: process.env.SESSION_SECRET!,
     resave: false,
     saveUninitialized: true,
-    cookie: { },
+    cookie: {
+      sameSite: 'none',
+      secure: true,
+      httpOnly: true,
+    },
   } as session.SessionOptions;
-
-  if (process.env.NODE_ENV === 'production' && process.env.USE_HTTPS === 'true') {
-    sess.cookie!.secure = true; // serve secure cookies
-  }
 
   app.set('trust proxy', 2);
   app.use(session(sess));
