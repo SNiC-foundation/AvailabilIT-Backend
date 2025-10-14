@@ -134,6 +134,7 @@ build/
 
 # tsoa
 src/public/swagger.json
+src/routes.ts
 
 # SQLite
 local.sqlite
