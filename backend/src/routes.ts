@@ -420,6 +420,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "name": {"dataType":"string","required":true},
+            "title": {"dataType":"string","required":true},
             "description": {"dataType":"string","required":true},
             "links": {"dataType":"array","array":{"dataType":"refObject","ref":"SpeakerLink"}},
             "tags": {"dataType":"array","array":{"dataType":"string"}},
@@ -430,7 +431,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Partial_SpeakerParams_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string"},"description":{"dataType":"string"},"links":{"dataType":"array","array":{"dataType":"refObject","ref":"SpeakerLink"}},"tags":{"dataType":"array","array":{"dataType":"string"}},"type":{"ref":"SpeakerType"}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string"},"title":{"dataType":"string"},"description":{"dataType":"string"},"links":{"dataType":"array","array":{"dataType":"refObject","ref":"SpeakerLink"}},"tags":{"dataType":"array","array":{"dataType":"string"}},"type":{"ref":"SpeakerType"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "CreateSubscribeActivityParams": {

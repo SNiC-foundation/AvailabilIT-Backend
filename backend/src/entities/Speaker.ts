@@ -18,6 +18,7 @@ export enum SpeakerType {
 
 export interface SpeakerParams {
   name: string;
+  title: string;
   description: string;
   links?: SpeakerLink[];
   tags?: string[];
