@@ -31,6 +31,9 @@ export default class Speaker extends BaseEnt {
     name: string;
 
   @Column({ type: 'text' })
+    title: string;
+
+  @Column({ type: 'text' })
     description: string;
 
   @Column({ type: 'json', nullable: true })

@@ -90,6 +90,7 @@ const models: TsoaRoute.Models = {
             "updatedAt": {"dataType":"datetime","required":true},
             "version": {"dataType":"double","required":true},
             "name": {"dataType":"string","required":true},
+            "title": {"dataType":"string","required":true},
             "description": {"dataType":"string","required":true},
             "links": {"dataType":"array","array":{"dataType":"refObject","ref":"SpeakerLink"}},
             "tags": {"dataType":"array","array":{"dataType":"string"}},
