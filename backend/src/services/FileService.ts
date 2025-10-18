@@ -64,7 +64,7 @@ export default class FileService {
       throw new ApiError(HTTPStatus.BadRequest, 'No file is passed in the request');
     }
 
-      const fileExtension = mime.extension(file.mimetype) || '';
+    const fileExtension = mime.extension(file.mimetype) || '';
     if (!['jpg', 'jpeg', 'png', 'bmp', 'gif'].includes(fileExtension)) {
       throw new ApiError(HTTPStatus.BadRequest, 'Speaker image needs to be an image file');
     }
@@ -74,8 +74,8 @@ export default class FileService {
     }
 
     const randomFileName = `${uuidv4()}.${fileExtension}`;
-    const relativeLocation = path.join(uploadPartnerLogoDir.substring(5), randomFileName);
-    const fileLocation = path.join(__dirname, '/../../', uploadPartnerLogoDir, randomFileName);
+    const relativeLocation = randomFileName; // Just store the filename
+    const fileLocation = path.join(__dirname, '/../../', uploadSpeakerImageDir, randomFileName);
     speaker.imageFilename = relativeLocation;
     fs.writeFileSync(fileLocation, file.buffer);
     try {

@@ -75,10 +75,11 @@ function createApp(): void {
 
     if (process.env.NODE_ENV === 'development') {
       app.use(['/api/openapi', '/api/docs', '/api/swagger', '/api/swagger-ui'], swaggerUI.serve, swaggerUI.setup(swaggerJson));
-      app.use('/api/static/partners', express.static(path.join(__dirname, '/../', uploadPartnerLogoDir)));
-      app.use('/api/static/speakers', express.static(path.join(__dirname, '/../', uploadSpeakerImageDir)));
-      app.use('/api/static/barcodes', express.static(path.join(__dirname, '/../', barcodeDirLoc)));
     }
+
+    app.use('/api/static/partners', express.static(path.join(__dirname, '/../', uploadPartnerLogoDir)));
+    app.use('/api/static/speakers', express.static(path.join(__dirname, '/../', uploadSpeakerImageDir)));
+    app.use('/api/static/barcodes', express.static(path.join(__dirname, '/../', barcodeDirLoc)));
 
     RegisterRoutes(app);
     app.use(validationErrorHandler);
