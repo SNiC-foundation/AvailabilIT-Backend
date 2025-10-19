@@ -50,10 +50,8 @@ export default class TracksReminder extends MailTemplate<TracksReminderOptions> 
   public constructor(options: TracksReminderOptions) {
     const opt: TracksReminderOptions = {
       ...options,
+      url: 'https://availabilit.snic.nl',
     };
-    if (!options.url) {
-      opt.url = process.env.URL;
-    }
     super(opt, reminder);
   }
 }

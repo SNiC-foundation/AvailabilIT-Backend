@@ -54,10 +54,8 @@ export default class PasswordReset extends MailTemplate<WelcomeWithResetOptions>
   public constructor(options: WelcomeWithResetOptions) {
     const opt: WelcomeWithResetOptions = {
       ...options,
+      url: 'https://availabilit.snic.nl',
     };
-    if (!options.url) {
-      opt.url = process.env.URL;
-    }
     super(opt, passwordReset);
   }
 }

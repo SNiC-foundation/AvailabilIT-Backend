@@ -62,10 +62,8 @@ export default class TicketActivated extends MailTemplate<TicketActivatedParams>
   public constructor(options: TicketActivatedParams) {
     const opt: TicketActivatedParams = {
       ...options,
+      url: 'https://availabilit.snic.nl',
     };
-    if (!options.url) {
-      opt.url = process.env.URL;
-    }
     super(opt, ticketActivated);
   }
 }

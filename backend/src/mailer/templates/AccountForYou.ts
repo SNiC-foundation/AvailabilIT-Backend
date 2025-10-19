@@ -42,10 +42,8 @@ export default class AccountForYou extends MailTemplate<RegisterUserWithPassword
   public constructor(options: RegisterUserWithPasswordReset) {
     const opt: RegisterUserWithPasswordReset = {
       ...options,
+      url: 'https://availabilit.snic.nl',
     };
-    if (!options.url) {
-      opt.url = process.env.URL;
-    }
     super(opt, accountAddedForYouWithPasswordReset);
   }
 }

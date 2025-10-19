@@ -57,10 +57,8 @@ export default class SetPasswordReminder extends MailTemplate<setPasswordReminde
   public constructor(options: setPasswordReminderOptions) {
     const opt: setPasswordReminderOptions = {
       ...options,
+      url: 'https://availabilit.snic.nl',
     };
-    if (!options.url) {
-      opt.url = process.env.URL;
-    }
     super(opt, reminder);
   }
 }

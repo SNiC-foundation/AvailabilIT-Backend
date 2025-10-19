@@ -48,10 +48,8 @@ export default class WelcomeWithReset extends MailTemplate<RegisterUserWithPassw
   public constructor(options: RegisterUserWithPasswordReset) {
     const opt: RegisterUserWithPasswordReset = {
       ...options,
+      url: 'https://availabilit.snic.nl',
     };
-    if (!options.url) {
-      opt.url = process.env.URL;
-    }
     super(opt, registerParticipantWithPasswordReset);
   }
 }

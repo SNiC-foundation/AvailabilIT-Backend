@@ -20,6 +20,8 @@ import * as fs from 'fs';
 import path from 'path';
 import MailContent from './MailContent';
 
+const WEBSITE_URL = 'https://availabilit.snic.nl';
+
 export default class MailTemplate<T> {
   protected baseMailOptions: Mail.Options = {
     from: process.env.SMTP_FROM,
@@ -41,7 +43,7 @@ export default class MailTemplate<T> {
     const { text, html, subject } = this.mailContent.getContent(this.contentOptions);
 
     let htmlTemplate = fs.readFileSync(path.join(__dirname, '../../../static/container.html')).toString();
-    htmlTemplate = htmlTemplate.replaceAll('{{url}}', process.env.URL || '');
+    htmlTemplate = htmlTemplate.replaceAll('{{url}}', WEBSITE_URL);
     htmlTemplate = htmlTemplate.replaceAll('{{title}}', subject || '');
     htmlTemplate = htmlTemplate.replace('{{content}}', html);
 
