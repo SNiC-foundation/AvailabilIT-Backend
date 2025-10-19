@@ -28,16 +28,16 @@ export interface RegisterUserWithPasswordReset {
 const registerParticipantWithPasswordReset = new MailContent<RegisterUserWithPasswordReset>({
   getHTML: (context) => `
 <p>Dear ${context.name},</p>
-<p>You have finished the first steps of creating your account for SNiC 2024: SustainabilIT.</p>
+<p>You have finished the first steps of creating your account for SNiC 2025: AvailabilIT.</p>
 <p>To finish the creation process, you have to set a password by going to
     <a href="${context.url}/reset-password?token=${context.token}&email=${context.email}">this link</a>
 . If the link has expired, you can reset your password on the website.</p>
 <p>If your password is set, you can log in into the website.</p>`,
-  getSubject: () => 'Finish registering for SNiC 2024: SustainabilIT',
+  getSubject: () => 'Finish registering for SNiC 2025: AvailabilIT',
   getText: (context) => `
 Dear ${context.name},
 
-You have just finished the first steps of creating your account SNiC 2024: SustainabilIT.
+You have just finished the first steps of creating your account SNiC 2025: AvailabilIT.
 
 To finish the activation process, you have to set a password by going to ${`${context.url}/reset-password?token=${context.token}&email=${context.email}`}. If this link has expired, you can reset your password on the website.
 

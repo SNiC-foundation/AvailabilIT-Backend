@@ -31,25 +31,25 @@ const reminder = new MailContent<setPasswordReminderOptions>({
     const link = `${context.url}/reset-password?token=${context.token}&email=${context.email}`;
     return `
 <p>Dear ${context.name},</p>
-<p>On ${context.createDate.toLocaleDateString(undefined, { timeZone: 'Europe/Amsterdam' })}, you created an account for the SNiC 2024: SustainabilIT website, probably to activate your ticket.
+<p>On ${context.createDate.toLocaleDateString(undefined, { timeZone: 'Europe/Amsterdam' })}, you created an account for the SNiC 2025: AvailabilIT website, probably to activate your ticket.
 The creation process is however not yet finished, because you still need to set a password. To complete the process, use the following link any time within the next 24 hours: </p>
 <p><a href="${link}">Reset Link</a></p>
-<p>If this link somehow does not work, you can also request a password reset on the SustainabilIT website.</p>
-<p>If you received this email, but did not buy a ticket for SNiC 2024: SustainabilIT, please contact us at inquiries@sustainabilit.snic.nl.
+<p>If this link somehow does not work, you can also request a password reset on the AvailabilIT website.</p>
+<p>If you received this email, but did not buy a ticket for SNiC 2025: AvailabilIT, please contact us at info@availabilit.snic.nl.
 It seems then that someone used the wrong email address for their ticket activation.</p>`;
   },
   getSubject: () => 'Please finish your ticket activation!',
   getText: (context) => `
 Dear ${context.name},
 
-On ${context.createDate.toLocaleDateString(undefined, { timeZone: 'Europe/Amsterdam' })}, you created an account for the SNiC 2024: SustainabilIT website, probably to activate your ticket.
+On ${context.createDate.toLocaleDateString(undefined, { timeZone: 'Europe/Amsterdam' })}, you created an account for the SNiC 2025: AvailabilIT website, probably to activate your ticket.
 The creation process is however not yet finished, because you still need to set a password. To complete the process, use the following link any time within the next 24 hours: 
 
 ${context.url}/reset-password?token=${context.token}&email=${context.email}
 
-If this link somehow does not work, you can also request a password reset on the SustainabilIT website.
+If this link somehow does not work, you can also request a password reset on the AvailabilIT website.
 
-If you received this email, but did not buy a ticket for SNiC 2024: SustainabilIT, please contact us at inquiries@sustainabilit.snic.nl.
+If you received this email, but did not buy a ticket for SNiC 2025: AvailabilIT, please contact us at info@availabilit.snic.nl.
 It seems then that someone used the wrong email address for their ticket activation.`,
 });
 

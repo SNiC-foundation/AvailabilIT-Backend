@@ -27,21 +27,21 @@ interface TicketActivatedParams {
 const ticketActivated = new MailContent<TicketActivatedParams>({
   getHTML: (context) => `
     <p>Dear ${context.name},</p>
-    <p>We are happy to welcome you to SustainabilIT on the 27th of November!</p>
+    <p>We are happy to welcome you to AvailabilIT on the 25th of November!</p>
     <p>Your ticket code is: ${context.ticketCode}.</p>
     <p><img src="${context.url}/api/static/barcodes/${context.ticketCode}.png" alt="${context.ticketCode}"/></p>
     <p>Please bring this barcode to the conference.</p>
     <p>Before the conference starts you need to perform a few actions. Please read this email carefully.</p>
     <p>Firstly, please make sure your personal information is up to date and correct, your name will be used for a personal name badge. If applicable, also make sure to update your allergy information before the 1st of November. There will be sufficient vegetarian options available by default.</p>
-    <p>Secondly, starting from Monday 25th of October at 12:00 the subscriptions will open for the conference program. You can find the program <a href="https://www.snic-sustainabilit.nl/program">here</a>. You can choose yourself what talks you want to visit.</p>
+    <p>Secondly, starting from Monday 25th of October at 12:00 the subscriptions will open for the conference program. You can find the program <a href="https://www.availabilit.snic.nl/program">here</a>. You can choose yourself what talks you want to visit.</p>
     <p>Please subscribe before the 1st of November to get a personal program. If you have not subscribed for all rounds by then, you will be randomly assigned to the remaining spots.</p>
     <p>Lunch, dinner and drinks are all included in the price, you do not need to bring any food. Additionally, the conference does not require you to bring a bag or a laptop. Also, note that this is a serious activity so please dress appropriately.</p>
-    <p>We look forward to seeing you at SustainabilIT!</p>`,
-  getSubject: () => 'Important information regarding the SNiC 2024 SustainabilIT conference',
+    <p>We look forward to seeing you at AvailabilIT!</p>`,
+  getSubject: () => 'Important information regarding the SNiC 2025 AvailabilIT conference',
   getText: (context) => `
 Dear ${context.name},
 
-We are happy to welcome you to SustainabilIT on the 27th of November!
+We are happy to welcome you to AvailabilIT on the 25th of November!
 
 Your ticket code is: ${context.ticketCode}. Please bring this code to the conference.
 
@@ -49,13 +49,13 @@ Before the conference starts you need to perform a few actions. Please read this
 
 Firstly, please make sure your personal information is up to date and correct, your name will be used for a personal name badge. If applicable, also make sure to update your allergy information before the 1st of November. There will be sufficient vegetarian options available by default.
 
-Secondly, starting from Monday 25th of October at 12:00 the subscriptions will open for the conference program. You can find the program on our website: www.snic-sustainabilit.nl. You can choose yourself what talks you want to visit.
+Secondly, starting from Monday 25th of October at 12:00 the subscriptions will open for the conference program. You can find the program on our website: availabilit.snic.nl. You can choose yourself what talks you want to visit.
 
 Please subscribe before the 1st of November to get a personal program. If you have not subscribed for all rounds by then, you will be randomly assigned to the remaining spots.
 
 Lunch, dinner and drinks are all included in the price, you do not need to bring any food. Additionally, the conference does not require you to bring a bag or a laptop. Also, note that this is a serious activity so please dress appropriately.
 
-We look forward to seeing you at SustainabilIT!`,
+We look forward to seeing you at AvailabilIT!`,
 });
 
 export default class TicketActivated extends MailTemplate<TicketActivatedParams> {

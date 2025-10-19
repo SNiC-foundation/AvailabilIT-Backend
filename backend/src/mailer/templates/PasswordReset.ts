@@ -34,7 +34,7 @@ const passwordReset = new MailContent<WelcomeWithResetOptions>({
 <p>Dear ${context.name},</p>
 <p>A password reset for this email address has been requested. To complete the process, use the following link any time within the next 60 minutes: </p>
 <p><a href="${link}">Reset Link</a></p>
-<p>If this link somehow does not work, you have to request a new password reset on the SustainabilIT website again.</p>
+<p>If this link somehow does not work, you have to request a new password reset on the AvailabilIT website again.</p>
 <p>If you have not requested a password reset, you can safely ignore this email and use your current login information.</p>`;
   },
   getSubject: () => 'Password reset',
@@ -45,7 +45,7 @@ A password reset for this email address has been requested. To complete the proc
 
 ${context.url}/reset-password?token=${context.token}&email=${context.email}
 
-If this link somehow does not work, you have to request a new password reset on the SustainabilIT website again.
+If this link somehow does not work, you have to request a new password reset on the AvailabilIT website again.
 
 If you have not requested a password reset, you can safely ignore this email and use your current login information.`,
 });

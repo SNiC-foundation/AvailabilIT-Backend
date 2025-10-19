@@ -29,7 +29,7 @@ For more information on how to set up email sending, see the `backend/README.md`
 
 ## Deployment
 
-The website must be hosted on your own server. For this **via** in 2024 used kubernetes, helm charts can be found in the `charts/` folder. Another way is to use a simple docker-compose setup, which is also provided in the `docker-compose.yml` file.
+The website must be hosted on your own server. For this **via** in 2025 used kubernetes, helm charts can be found in the `charts/` folder. Another way is to use a simple docker-compose setup, which is also provided in the `docker-compose.yml` file.
 
 
 ## What to do in the new year?

@@ -26,8 +26,8 @@ interface TracksReminderOptions {
 const reminder = new MailContent<TracksReminderOptions>({
   getHTML: (context) => `
 <p>Dear ${context.name},</p>
-<p>Thank you for joining us on November 27th for the 2024 edition of SNiC: 
-SustainabilIT, and registering on the website! 
+<p>Thank you for joining us on November 25th for the 2025 edition of SNiC: 
+AvailabilIT, and registering on the website! 
 With this email, we would like to inform you that you can enroll in the talks
 starting tomorrow at 12:00.</p>
 
@@ -37,8 +37,8 @@ starting tomorrow at 12:00.</p>
   getText: (context) => `
 Dear ${context.name},
 
-Thank you for joining us on November 27th for the 2024 edition of SNiC: 
-SustainabilIT, and registering on the website! 
+Thank you for joining us on November 25th for the 2025 edition of SNiC: 
+AvailabilIT, and registering on the website! 
 With this email, we would like to inform you that you can enroll in the talks
 starting tomorrow at 12:00. 
 
