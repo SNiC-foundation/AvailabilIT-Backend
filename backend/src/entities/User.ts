@@ -1,5 +1,14 @@
 import {
-  Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, BeforeInsert, BeforeUpdate,
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  BeforeInsert,
+  BeforeUpdate,
 } from 'typeorm';
 import BaseEnt from './BaseEnt';
 import Role from './Role';
@@ -16,12 +25,20 @@ import TicketScan from './TicketScan';
 // eslint-disable-next-line import/no-cycle
 import LocalAuthenticator from './Authentication/LocalAuthenticator';
 
+export enum Language {
+  // eslint-disable-next-line no-unused-vars
+  ENGLISH = 'english',
+  // eslint-disable-next-line no-unused-vars
+  DUTCH = 'dutch',
+}
+
 export interface CreateParticipantUserParams {
   email: string;
   name: string;
   dietaryWishes: string;
   needs: string;
   agreeToPrivacyPolicy: boolean;
+  languages: Language[];
   participantInfo: {
     studyProgram: string;
   }
@@ -31,6 +48,7 @@ export interface PersonalUserParams {
   name: string;
   dietaryWishes: string;
   needs: string;
+  languages: Language[];
   participantInfo?: UpdateParticipantParams;
 }
 
@@ -65,6 +83,12 @@ export default class User extends BaseEnt {
 
   @Column()
     agreeToPrivacyPolicy: boolean;
+
+  @Column({
+    type: 'json',
+    default: '[]',
+  })
+    languages: Language[];
 
   @OneToOne(() => Participant, (participant) => participant.user, { nullable: true, eager: true, cascade: ['insert', 'update', 'remove'] })
     participantInfo?: Participant;

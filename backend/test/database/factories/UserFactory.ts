@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { DataSource } from 'typeorm';
-import User, { UserParams } from '../../../src/entities/User';
+import User, { UserParams, Language } from '../../../src/entities/User';
 import Factory from './Factory';
 import TicketFactory from './TicketFactory';
 
@@ -20,6 +20,7 @@ export default class UserFactory extends Factory<User> {
       dietaryWishes: faker.animal.type(),
       needs: faker.animal.type(),
       agreeToPrivacyPolicy: Math.random() > 0.5,
+      languages: Math.random() > 0.5 ? [Language.ENGLISH] : [Language.DUTCH],
     };
     const user = new User();
     user.name = params.name;
@@ -27,6 +28,7 @@ export default class UserFactory extends Factory<User> {
     user.dietaryWishes = params.dietaryWishes;
     user.needs = params.needs;
     user.agreeToPrivacyPolicy = params.agreeToPrivacyPolicy;
+    user.languages = params.languages;
 
     return user;
   }
