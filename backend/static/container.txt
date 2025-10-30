@@ -5,11 +5,4 @@ The AvailabilIT committee
 
 
 SNiC 2025: AvailabilIT is powered by our partners:
-Info Support,
-ING,
-Conclusion,
-Nedap, 
-YER,  
-Booking, 
-ChipSoft,
-and Harvest.
+Nedap, ChipSoft, and ING
