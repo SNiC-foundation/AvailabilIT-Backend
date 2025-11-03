@@ -9,7 +9,7 @@ dotenv.config();
 Sentry.init({
   enabled: process.env.NODE_ENV === 'production',
   release: process.env.VERSION,
-  dsn: 'https://b763eb8c0abbd42bd71b0aa4d058ebe0@o56951.ingest.us.sentry.io/4507942790234112',
+  dsn: process.env.SENTRY_DSN,
   integrations: [
     nodeProfilingIntegration(),
   ],
