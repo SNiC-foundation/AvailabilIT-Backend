@@ -77,11 +77,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "SpeakerType": {
-        "dataType": "refEnum",
-        "enums": ["keynote","talk","host"],
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Speaker": {
         "dataType": "refObject",
         "properties": {
@@ -94,11 +89,16 @@ const models: TsoaRoute.Models = {
             "description": {"dataType":"string","required":true},
             "links": {"dataType":"array","array":{"dataType":"refObject","ref":"SpeakerLink"}},
             "tags": {"dataType":"array","array":{"dataType":"string"}},
-            "type": {"ref":"SpeakerType","required":true},
+            "type": {"dataType":"string","required":true},
             "activities": {"dataType":"array","array":{"dataType":"refObject","ref":"Activity"},"required":true},
             "imageFilename": {"dataType":"string"},
         },
         "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Language": {
+        "dataType": "refEnum",
+        "enums": ["english","dutch"],
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "User": {
@@ -114,6 +114,7 @@ const models: TsoaRoute.Models = {
             "dietaryWishes": {"dataType":"string","required":true},
             "needs": {"dataType":"string","required":true},
             "agreeToPrivacyPolicy": {"dataType":"boolean","required":true},
+            "languages": {"dataType":"array","array":{"dataType":"refEnum","ref":"Language"},"required":true},
             "participantInfo": {"ref":"Participant"},
             "roles": {"dataType":"array","array":{"dataType":"refObject","ref":"Role"},"required":true},
             "ticket": {"ref":"Ticket"},
@@ -298,6 +299,7 @@ const models: TsoaRoute.Models = {
             "dietaryWishes": {"dataType":"string","required":true},
             "needs": {"dataType":"string","required":true},
             "agreeToPrivacyPolicy": {"dataType":"boolean","required":true},
+            "languages": {"dataType":"array","array":{"dataType":"refEnum","ref":"Language"},"required":true},
             "participantInfo": {"dataType":"nestedObjectLiteral","nestedProperties":{"studyProgram":{"dataType":"string","required":true}},"required":true},
         },
         "additionalProperties": false,
@@ -417,6 +419,11 @@ const models: TsoaRoute.Models = {
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SpeakerType": {
+        "dataType": "refEnum",
+        "enums": ["keynote","talk","host"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "SpeakerParams": {
         "dataType": "refObject",
         "properties": {
@@ -474,6 +481,7 @@ const models: TsoaRoute.Models = {
             "name": {"dataType":"string","required":true},
             "dietaryWishes": {"dataType":"string","required":true},
             "needs": {"dataType":"string","required":true},
+            "languages": {"dataType":"array","array":{"dataType":"refEnum","ref":"Language"},"required":true},
             "participantInfo": {"ref":"UpdateParticipantParams"},
             "email": {"dataType":"string","required":true},
             "agreeToPrivacyPolicy": {"dataType":"boolean","required":true},
@@ -484,12 +492,12 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Partial_UserParams_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"email":{"dataType":"string"},"agreeToPrivacyPolicy":{"dataType":"boolean"},"partnerId":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}]},"name":{"dataType":"string"},"dietaryWishes":{"dataType":"string"},"needs":{"dataType":"string"},"participantInfo":{"ref":"UpdateParticipantParams"}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"email":{"dataType":"string"},"agreeToPrivacyPolicy":{"dataType":"boolean"},"partnerId":{"dataType":"union","subSchemas":[{"dataType":"double"},{"dataType":"enum","enums":[null]}]},"name":{"dataType":"string"},"dietaryWishes":{"dataType":"string"},"needs":{"dataType":"string"},"languages":{"dataType":"array","array":{"dataType":"refEnum","ref":"Language"}},"participantInfo":{"ref":"UpdateParticipantParams"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Partial_PersonalUserParams_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string"},"dietaryWishes":{"dataType":"string"},"needs":{"dataType":"string"},"participantInfo":{"ref":"UpdateParticipantParams"}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string"},"dietaryWishes":{"dataType":"string"},"needs":{"dataType":"string"},"languages":{"dataType":"array","array":{"dataType":"refEnum","ref":"Language"}},"participantInfo":{"ref":"UpdateParticipantParams"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "SendSetPasswordReminderParams": {

@@ -42,8 +42,8 @@ export default class Speaker extends BaseEnt {
   @Column({ type: 'json', nullable: true })
     tags?: string[];
 
-  @Column({ type: 'enum', enum: SpeakerType, default: SpeakerType.TALK })
-    type: SpeakerType;
+  @Column({ type: 'text', default: SpeakerType.TALK })
+    type: string;
 
   @ManyToMany(() => Activity, (act) => act.speakers)
     activities: Activity[];

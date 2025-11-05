@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { DataSource } from 'typeorm';
-import Speaker, { SpeakerParams } from '../../../src/entities/Speaker';
+import Speaker, { SpeakerParams, SpeakerType } from '../../../src/entities/Speaker';
 import Factory from './Factory';
 
 export default class SpeakerFactory extends Factory<Speaker> {
@@ -13,11 +13,15 @@ export default class SpeakerFactory extends Factory<Speaker> {
     const params: SpeakerParams = {
       name: faker.person.fullName(),
       description: faker.word.noun(),
+      title: faker.word.noun(),
+      type: faker.helpers.arrayElement(Object.values(SpeakerType)),
     };
 
     const speaker = new Speaker();
     speaker.name = params.name;
     speaker.description = params.description;
+    speaker.title = params.title;
+    speaker.type = params.type;
     return speaker;
   }
 
