@@ -34,6 +34,7 @@ export function setupSessionSupport(app: Express) {
     secret: process.env.SESSION_SECRET!,
     resave: false,
     saveUninitialized: true,
+    proxy: true,
     cookie: {
       sameSite: 'none',
       secure: true,
