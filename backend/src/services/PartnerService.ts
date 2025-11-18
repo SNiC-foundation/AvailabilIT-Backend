@@ -73,7 +73,7 @@ export default class PartnerService {
   /**
    * QR Code Scanned
    */
-  async requestScan(id: number, params: QRParams): Promise<void> {
+  async requestScan(id: number, params: QRParams): Promise<Participant> {
     const { key, iv } = keys;
 
     const decipher = forge.cipher.createDecipher('AES-CBC', key);
@@ -87,9 +87,10 @@ export default class PartnerService {
     );
     if (participant == null) {
       throw new ApiError(HTTPStatus.NotFound, `Participant not found with code ${params.encryptedId}`);
-    } else {
-      await this.logScan(id, participant);
     }
+
+    await this.logScan(id, participant);
+    return participant;
   }
 
   /**

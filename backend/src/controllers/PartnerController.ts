@@ -1,10 +1,13 @@
 import {
-  Controller, Get, Post, Delete, Route, Body, Tags, Put, UploadedFile, Security,
+  Controller, Get, Post, Delete, Route, Body, Tags, Put, UploadedFile, Security, Request,
 } from 'tsoa';
 import { Express } from 'express';
+import { ApiError, HTTPStatus } from '../helpers/error';
 import PartnerService from '../services/PartnerService';
 import FileService from '../services/FileService';
 import Partner, { PartnerParams, QRParams } from '../entities/Partner';
+import Participant from '../entities/Participant';
+import User from '../entities/User';
 
 /**
  * TODO: Add paramater validation
@@ -77,7 +80,27 @@ export class PartnerController extends Controller {
    */
   @Post('{id}/scanqr')
   @Security('local', ['Partner'])
-  public async requestScan(id: number, @Body() params: QRParams): Promise<void> {
+  public async requestScan(id: number, @Body() params: QRParams): Promise<Participant> {
     return new PartnerService().requestScan(id, params);
+  }
+
+  /**
+   * Get all scanned participants for a partner
+   */
+  @Get('{id}/participants')
+  @Security('local', ['Partner', 'Admin'])
+  public async getParticipants(id: number, @Request() request: any): Promise<Participant[]> {
+    const user = (request.user as User);
+
+    // Admins can see all. Partners may only see their own partner id scans.
+    const roleNames = (user.roles || []).map((r) => r.name);
+    if (!roleNames.includes('Admin')) {
+      if (!roleNames.includes('Partner') || user.partnerId !== id) {
+        throw new ApiError(HTTPStatus.Forbidden, 'Forbidden');
+      }
+    }
+
+    const partner = await new PartnerService().getPartner(id, ['participants']);
+    return partner.participants || [];
   }
 }
